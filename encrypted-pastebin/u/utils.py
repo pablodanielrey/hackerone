@@ -36,16 +36,16 @@ def test_hash(url, hash):
 
 
 def encript_data(url, title, body):
-    #p = requests.post(url, data={ 'title':title, 'body':body }, proxies={'http':'http://127.0.0.1:8080'}, allow_redirects=False)
-    p = requests.post(url, data={ 'title':title, 'body':body }, allow_redirects=False)
+    p = requests.post(url, data={ 'title':title, 'body':body }, proxies={'http':'http://127.0.0.1:8080'}, allow_redirects=False)
+    #p = requests.post(url, data={ 'title':title, 'body':body }, allow_redirects=False)
     hash_ = extract_hash(p.text)
     dhash = u.common.b64d(hash_)
     return dhash
 
 def decript_data(url, hash):
     ehash = u.common.b64e(hash)
-    #r = requests.get(f'{url}?post={ehash}',  proxies={'http':'http://127.0.0.1:8080'}, allow_redirects=False)
-    r = requests.get(f'{url}?post={ehash}',  allow_redirects=False)
+    r = requests.get(f'{url}?post={ehash}',  proxies={'http':'http://127.0.0.1:8080'}, allow_redirects=False)
+    #r = requests.get(f'{url}?post={ehash}',  allow_redirects=False)
     if 'PaddingException' in r.text:
         raise Exception('error de padding')
     return r.text
