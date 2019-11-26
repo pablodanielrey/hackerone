@@ -1,0 +1,284 @@
+hechos:
+
+las claves siempre son del mismo largo. no importa la cantidad de body que se envíe.
+
+despues de hacer un unpad() de los datos retorna y se hace un json.loads()
+o sea decrypt --> unpad --> json.loads()
+
+
+
+despues de un malformed input.
+http://34.94.3.143/342ac00ef9/?post=1
+
+^FLAG^84d7a8faaec156942d9bcf51fb823fc185f3e4045483071d58b1bc4001063a10$FLAG$
+Traceback (most recent call last):
+  File "./main.py", line 69, in index
+    post = json.loads(decryptLink(postCt).decode('utf8'))
+  File "./common.py", line 46, in decryptLink
+    data = b64d(data)
+  File "./common.py", line 11, in <lambda>
+    b64d = lambda x: base64.decodestring(x.replace('~', '=').replace('!', '/').replace('-', '+'))
+  File "/usr/local/lib/python2.7/base64.py", line 328, in decodestring
+    return binascii.a2b_base64(s)
+Error: Incorrect padding
+
+---
+
+
+hash original
+q4O1zznLA1-5ZFO87gwpXt8u7i4fUarTrqK-Mwa2a2IL8mnOE2!EXamI92nsLkjwA91Qn9KtSvQe8qJx2yD5kpjjxJKR1gEBy-dBV1G-AKmGCx!RFKI5GxOuFsno8PCb492xIfpeLILEluZ314T5ijiEjM!bQYJ4Q5S3pvc!mTxsklEvdUQDJ4ebV5A0OOp!kv-oHErxG5tKSZHQJhpJHA~~
+
+cambiando ultimo caracter del hash no tiene efecto
+q4O1zznLA1-5ZFO87gwpXt8u7i4fUarTrqK-Mwa2a2IL8mnOE2!EXamI92nsLkjwA91Qn9KtSvQe8qJx2yD5kpjjxJKR1gEBy-dBV1G-AKmGCx!RFKI5GxOuFsno8PCb492xIfpeLILEluZ314T5ijiEjM!bQYJ4Q5S3pvc!mTxsklEvdUQDJ4ebV5A0OOp!kv-oHErxG5tKSZHQJhpJHB~~
+
+cambiando el anteultimo caracter del hash tira error de padding.
+q4O1zznLA1-5ZFO87gwpXt8u7i4fUarTrqK-Mwa2a2IL8mnOE2!EXamI92nsLkjwA91Qn9KtSvQe8qJx2yD5kpjjxJKR1gEBy-dBV1G-AKmGCx!RFKI5GxOuFsno8PCb492xIfpeLILEluZ314T5ijiEjM!bQYJ4Q5S3pvc!mTxsklEvdUQDJ4ebV5A0OOp!kv-oHErxG5tKSZHQJhpJhB~~
+
+
+Traceback (most recent call last):
+  File "./main.py", line 69, in index
+    post = json.loads(decryptLink(postCt).decode('utf8'))
+  File "./common.py", line 49, in decryptLink
+    return unpad(cipher.decrypt(data))
+  File "./common.py", line 22, in unpad
+    raise PaddingException()
+PaddingException
+
+
+cambiando el primer caracter del hash
+a4O1zznLA1-5ZFO87gwpXt8u7i4fUarTrqK-Mwa2a2IL8mnOE2!EXamI92nsLkjwA91Qn9KtSvQe8qJx2yD5kpjjxJKR1gEBy-dBV1G-AKmGCx!RFKI5GxOuFsno8PCb492xIfpeLILEluZ314T5ijiEjM!bQYJ4Q5S3pvc!mTxsklEvdUQDJ4ebV5A0OOp!kv-oHErxG5tKSZHQJhpJHB~~
+
+^FLAG^84d7a8faaec156942d9bcf51fb823fc185f3e4045483071d58b1bc4001063a10$FLAG$
+Traceback (most recent call last):
+  File "./main.py", line 69, in index
+    post = json.loads(decryptLink(postCt).decode('utf8'))
+  File "/usr/local/lib/python2.7/encodings/utf_8.py", line 16, in decode
+    return codecs.utf_8_decode(input, errors, True)
+UnicodeDecodeError: 'utf8' codec can't decode byte 0xbb in position 0: invalid start byte
+
+
+ahora cambiando el primer caracter a 4
+44O1zznLA1-5ZFO87gwpXt8u7i4fUarTrqK-Mwa2a2IL8mnOE2!EXamI92nsLkjwA91Qn9KtSvQe8qJx2yD5kpjjxJKR1gEBy-dBV1G-AKmGCx!RFKI5GxOuFsno8PCb492xIfpeLILEluZ314T5ijiEjM!bQYJ4Q5S3pvc!mTxsklEvdUQDJ4ebV5A0OOp!kv-oHErxG5tKSZHQJhpJHB~~
+
+^FLAG^84d7a8faaec156942d9bcf51fb823fc185f3e4045483071d58b1bc4001063a10$FLAG$
+Traceback (most recent call last):
+  File "./main.py", line 69, in index
+    post = json.loads(decryptLink(postCt).decode('utf8'))
+  File "/usr/local/lib/python2.7/json/__init__.py", line 339, in loads
+    return _default_decoder.decode(s)
+  File "/usr/local/lib/python2.7/json/decoder.py", line 367, in decode
+    raise ValueError(errmsg("Extra data", s, end, len(s)))
+ValueError: Extra data: line 1 column 2 - line 1 column 136 (char 1 - 135)
+
+
+cambiando el segundo caracter 
+qaO1zznLA1-5ZFO87gwpXt8u7i4fUarTrqK-Mwa2a2IL8mnOE2!EXamI92nsLkjwA91Qn9KtSvQe8qJx2yD5kpjjxJKR1gEBy-dBV1G-AKmGCx!RFKI5GxOuFsno8PCb492xIfpeLILEluZ314T5ijiEjM!bQYJ4Q5S3pvc!mTxsklEvdUQDJ4ebV5A0OOp!kv-oHErxG5tKSZHQJhpJHB~~
+
+^FLAG^84d7a8faaec156942d9bcf51fb823fc185f3e4045483071d58b1bc4001063a10$FLAG$
+Traceback (most recent call last):
+  File "./main.py", line 69, in index
+    post = json.loads(decryptLink(postCt).decode('utf8'))
+  File "/usr/local/lib/python2.7/json/__init__.py", line 339, in loads
+    return _default_decoder.decode(s)
+  File "/usr/local/lib/python2.7/json/decoder.py", line 364, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/local/lib/python2.7/json/decoder.py", line 382, in raw_decode
+    raise ValueError("No JSON object could be decoded")
+ValueError: No JSON object could be decoded
+
+
+-------------------------
+si mando algo mas corto que 16bytes 
+
+^FLAG^84d7a8faaec156942d9bcf51fb823fc185f3e4045483071d58b1bc4001063a10$FLAG$
+Traceback (most recent call last):
+  File "./main.py", line 69, in index
+    post = json.loads(decryptLink(postCt).decode('utf8'))
+  File "./common.py", line 48, in decryptLink
+    cipher = AES.new(staticKey, AES.MODE_CBC, iv)
+  File "/usr/local/lib/python2.7/site-packages/Crypto/Cipher/AES.py", line 95, in new
+    return AESCipher(key, *args, **kwargs)
+  File "/usr/local/lib/python2.7/site-packages/Crypto/Cipher/AES.py", line 59, in __init__
+    blockalgo.BlockAlgo.__init__(self, _AES, key, *args, **kwargs)
+  File "/usr/local/lib/python2.7/site-packages/Crypto/Cipher/blockalgo.py", line 141, in __init__
+    self._cipher = factory.new(key, *args, **kwargs)
+ValueError: IV must be 16 bytes long
+
+
+--------
+al usar el ultimo byte para analizar el padding me doy cuenta que esta usando 
+pkcs#7
+
+
+^FLAG^84d7a8faaec156942d9bcf51fb823fc185f3e4045483071d58b1bc4001063a10$FLAG$
+Traceback (most recent call last):
+  File "./main.py", line 69, in index
+    post = json.loads(decryptLink(postCt).decode('utf8'))
+  File "./common.py", line 49, in decryptLink
+    return unpad(cipher.decrypt(data))
+  File "./common.py", line 19, in unpad
+    padding = data[-1]
+IndexError: string index out of range
+
+
+----
+
+
+cantidad de caracteres < 16
+
+tira error de iv - o sea que los primeros 16 bytes son el iv.
+
+Traceback (most recent call last):
+  File "./main.py", line 69, in index
+    post = json.loads(decryptLink(postCt).decode('utf8'))
+  File "./common.py", line 48, in decryptLink
+    cipher = AES.new(staticKey, AES.MODE_CBC, iv)
+  File "/usr/local/lib/python2.7/site-packages/Crypto/Cipher/AES.py", line 95, in new
+    return AESCipher(key, *args, **kwargs)
+  File "/usr/local/lib/python2.7/site-packages/Crypto/Cipher/AES.py", line 59, in __init__
+    blockalgo.BlockAlgo.__init__(self, _AES, key, *args, **kwargs)
+  File "/usr/local/lib/python2.7/site-packages/Crypto/Cipher/blockalgo.py", line 141, in __init__
+    self._cipher = factory.new(key, *args, **kwargs)
+ValueError: IV must be 16 bytes long
+
+
+
+---
+en caso de que el bloque enviado sea distinto de multiplos de 16 tira error.
+
+pablo@xiaomi:~/Documentos/hackerone/herramientas/hard_flag_encrypted_pastebin$ python3 generate_errors.py 
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA~~
+^FLAG^84d7a8faaec156942d9bcf51fb823fc185f3e4045483071d58b1bc4001063a10$FLAG$
+Traceback (most recent call last):
+  File "./main.py", line 69, in index
+    post = json.loads(decryptLink(postCt).decode('utf8'))
+  File "./common.py", line 49, in decryptLink
+    return unpad(cipher.decrypt(data))
+  File "/usr/local/lib/python2.7/site-packages/Crypto/Cipher/blockalgo.py", line 295, in decrypt
+    return self._cipher.decrypt(ciphertext)
+ValueError: Input strings must be a multiple of 16 in length
+
+----
+
+en casos donde se envían exactamente bloques de 16 pero incorrecto la codificiación tira error de padding.
+
+pablo@xiaomi:~/Documentos/hackerone/herramientas/hard_flag_encrypted_pastebin$ python3 generate_errors.py 
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA~
+Traceback (most recent call last):
+  File "./main.py", line 69, in index
+    post = json.loads(decryptLink(postCt).decode('utf8'))
+  File "./common.py", line 49, in decryptLink
+    return unpad(cipher.decrypt(data))
+  File "./common.py", line 22, in unpad
+    raise PaddingException()
+PaddingException
+
+
+---
+
+
+si le envío solo los 2 ultimos bloques de bytes.
+
+
+^FLAG^84d7a8faaec156942d9bcf51fb823fc185f3e4045483071d58b1bc4001063a10$FLAG$
+Traceback (most recent call last):
+  File "./main.py", line 69, in index
+    post = json.loads(decryptLink(postCt).decode('utf8'))
+  File "/usr/local/lib/python2.7/json/__init__.py", line 339, in loads
+    return _default_decoder.decode(s)
+  File "/usr/local/lib/python2.7/json/decoder.py", line 364, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/local/lib/python2.7/json/decoder.py", line 382, in raw_decode
+    raise ValueError("No JSON object could be decoded")
+ValueError: No JSON object could be decoded
+
+
+---
+
+
+
+[50, 119, 126, 126, 34, 125, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+b'32777e7e227d0a0a0a0a0a0a0a0a0a0a'
+2w~~"}
+
+---
+
+Solución 4
+[123, 34, 102, 108, 97, 103, 34, 58, 32, 34, 94, 70, 76, 65, 71, 94, 56, 55, 49, 51, 49, 54, 51, 53, 50, 101, 98, 50, 48, 102, 54, 57, 56, 50, 57, 49, 100, 99, 52, 100, 52, 99, 53, 54, 55, 56, 50, 52, 0, 0, 0, 0, 102, 56, 98, 50, 50, 100, 52, 101, 57, 56, 49, 49, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+b'7b22666c6167223a20225e464c41475e383731333136333532656232306636393832393164633464346335363738323400000000663862323264346539383131000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'
+{"flag": "^FLAG^871316352eb20f698291dc4d4c567824f8b22d4e9811
+
+Solución 2
+[123, 34, 102, 108, 97, 103, 34, 58, 32, 34, 94, 70, 76, 65, 71, 94, 56, 55, 49, 51, 49, 54, 51, 53, 50, 101, 98, 50, 48, 102, 54, 57, 56, 50, 57, 49, 100, 99, 52, 100, 52, 99, 53, 54, 55, 56, 50, 52, 0, 0, 48, 51, 102, 56, 98, 50, 50, 100, 52, 101, 57, 56, 49, 49, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+b'7b22666c6167223a20225e464c41475e383731333136333532656232306636393832393164633464346335363738323400003033663862323264346539383131000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'
+{"flag": "^FLAG^871316352eb20f698291dc4d4c56782403f8b22d4e9811
+
+Solución 15
+[123, 34, 102, 108, 97, 103, 34, 58, 32, 34, 94, 70, 76, 65, 71, 94, 56, 55, 49, 51, 49, 54, 51, 53, 50, 101, 98, 50, 48, 102, 54, 57, 56, 50, 57, 49, 100, 99, 52, 100, 52, 99, 53, 54, 55, 56, 50, 52, 48, 99, 48, 51, 102, 56, 98, 50, 50, 100, 52, 101, 57, 56, 49, 49, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 102, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+b'7b22666c6167223a20225e464c41475e383731333136333532656232306636393832393164633464346335363738323430633033663862323264346539383131000000000000000000000000000000660000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'
+{"flag": "^FLAG^871316352eb20f698291dc4d4c5678240c03f8b22d4e9811f
+
+
+Solución 15
+[123, 34, 102, 108, 97, 103, 34, 58, 32, 34, 94, 70, 76, 65, 71, 94, 56, 55, 49, 51, 49, 54, 51, 53, 50, 101, 98, 50, 48, 102, 54, 57, 56, 50, 57, 49, 100, 99, 52, 100, 52, 99, 53, 54, 55, 56, 50, 52, 48, 99, 48, 51, 102, 56, 98, 50, 50, 100, 52, 101, 57, 56, 49, 49, 52, 98, 48, 52, 97, 51, 50, 100, 97, 54, 98, 101, 100, 49, 98, 102, 36, 70, 76, 65, 71, 36, 34, 44, 32, 34, 105, 100, 34, 58, 32, 34, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 111, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+b'7b22666c6167223a20225e464c41475e3837313331363335326562323066363938323931646334643463353637383234306330336638623232643465393831313462303461333264613662656431626624464c414724222c20226964223a20220000000000000000000000000000006f000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'
+{"flag": "^FLAG^871316352eb20f698291dc4d4c5678240c03f8b22d4e98114b04a32da6bed1bf$FLAG$", "id": "o
+
+Solución 11
+[123, 34, 102, 108, 97, 103, 34, 58, 32, 34, 94, 70, 76, 65, 71, 94, 56, 55, 49, 51, 49, 54, 51, 53, 50, 101, 98, 50, 48, 102, 54, 57, 56, 50, 57, 49, 100, 99, 52, 100, 52, 99, 53, 54, 55, 56, 50, 52, 48, 99, 48, 51, 102, 56, 98, 50, 50, 100, 52, 101, 57, 56, 49, 49, 52, 98, 48, 52, 97, 51, 50, 100, 97, 54, 98, 101, 100, 49, 98, 102, 36, 70, 76, 65, 71, 36, 34, 44, 32, 34, 105, 100, 34, 58, 32, 34, 50, 34, 44, 32, 34, 107, 101, 121, 34, 58, 32, 34, 115, 98, 105, 111, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 56, 80, 107, 88, 67, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+b'7b22666c6167223a20225e464c41475e3837313331363335326562323066363938323931646334643463353637383234306330336638623232643465393831313462303461333264613662656431626624464c414724222c20226964223a202232222c20226b6579223a20227362696f000000000000000000000038506b58430000000000000000000000000000000000000000000000000000000000000000'
+{"flag": "^FLAG^871316352eb20f698291dc4d4c5678240c03f8b22d4e98114b04a32da6bed1bf$FLAG$", "id": "2", "key": "sbio8PkXC
+
+
+Solución 15
+[123, 34, 102, 108, 97, 103, 34, 58, 32, 34, 94, 70, 76, 65, 71, 94, 56, 55, 49, 51, 49, 54, 51, 53, 50, 101, 98, 50, 48, 102, 54, 57, 56, 50, 57, 49, 100, 99, 52, 100, 52, 99, 53, 54, 55, 56, 50, 52, 48, 99, 48, 51, 102, 56, 98, 50, 50, 100, 52, 101, 57, 56, 49, 49, 52, 98, 48, 52, 97, 51, 50, 100, 97, 54, 98, 101, 100, 49, 98, 102, 36, 70, 76, 65, 71, 36, 34, 44, 32, 34, 105, 100, 34, 58, 32, 34, 50, 34, 44, 32, 34, 107, 101, 121, 34, 58, 32, 34, 115, 98, 105, 111, 78, 102, 53, 70, 115, 98, 72, 73, 56, 53, 54, 56, 80, 107, 88, 67, 50, 119, 126, 126, 34, 125, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+b'7b22666c6167223a20225e464c41475e3837313331363335326562323066363938323931646334643463353637383234306330336638623232643465393831313462303461333264613662656431626624464c414724222c20226964223a202232222c20226b6579223a20227362696f4e6635467362484938353638506b584332777e7e227d0a0a0a0a0a0a0a0a0a0a00000000000000000000000000000001'
+{"flag": "^FLAG^871316352eb20f698291dc4d4c5678240c03f8b22d4e98114b04a32da6bed1bf$FLAG$", "id": "2", "key": "sbioNf5FsbHI8568PkXC2w~~"}
+
+Solución 1
+[123, 34, 102, 108, 97, 103, 34, 58, 32, 34, 94, 70, 76, 65, 71, 94, 56, 55, 49, 51, 49, 54, 51, 53, 50, 101, 98, 50, 48, 102, 54, 57, 56, 50, 57, 49, 100, 99, 52, 100, 52, 99, 53, 54, 55, 56, 50, 52, 48, 99, 48, 51, 102, 56, 98, 50, 50, 100, 52, 101, 57, 56, 49, 49, 52, 98, 48, 52, 97, 51, 50, 100, 97, 54, 98, 101, 100, 49, 98, 102, 36, 70, 76, 65, 71, 36, 34, 44, 32, 34, 105, 100, 34, 58, 32, 34, 0, 34, 44, 32, 34, 107, 101, 121, 34, 58, 32, 34, 115, 98, 105, 111, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+b'7b22666c6167223a20225e464c41475e3837313331363335326562323066363938323931646334643463353637383234306330336638623232643465393831313462303461333264613662656431626624464c414724222c20226964223a202200222c20226b6579223a20227362696f000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'
+{"flag": "^FLAG^871316352eb20f698291dc4d4c5678240c03f8b22d4e98114b04a32da6bed1bf$FLAG$", "id": "", "key": "sbio
+Solución 0
+[123, 34, 102, 108, 97, 103, 34, 58, 32, 34, 94, 70, 76, 65, 71, 94, 56, 55, 49, 51, 49, 54, 51, 53, 50, 101, 98, 50, 48, 102, 54, 57, 56, 50, 57, 49, 100, 99, 52, 100, 52, 99, 53, 54, 55, 56, 50, 52, 48, 99, 48, 51, 102, 56, 98, 50, 50, 100, 52, 101, 57, 56, 49, 49, 52, 98, 48, 52, 97, 51, 50, 100, 97, 54, 98, 101, 100, 49, 98, 102, 36, 70, 76, 65, 71, 36, 34, 44, 32, 34, 105, 100, 34, 58, 32, 34, 50, 34, 44, 32, 34, 107, 101, 121, 34, 58, 32, 34, 115, 98, 105, 111, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+b'7b22666c6167223a20225e464c41475e3837313331363335326562323066363938323931646334643463353637383234306330336638623232643465393831313462303461333264613662656431626624464c414724222c20226964223a202232222c20226b6579223a20227362696f000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'
+{"flag": "^FLAG^871316352eb20f698291dc4d4c5678240c03f8b22d4e98114b04a32da6bed1bf$FLAG$", "id": "2", "key": "sbio
+
+
+la key me parece que es:
+
+sbioNf5FsbHI8568PkXC2w~~ ---> decodificado del base64 y replace de chars.
+
+
+b8b135a845feb1b1f3c8bc9e453edbc2
+
+
+------------------------
+
+Solución block 8 pos : 0
+[123, 34, 102, 108, 97, 103, 34, 58, 32, 34, 94, 70, 76, 65, 71, 94, 56, 55, 49, 51, 49, 54, 51, 53, 50, 101, 98, 50, 48, 102, 54, 57, 56, 50, 57, 49, 100, 99, 52, 100, 52, 99, 53, 54, 55, 56, 50, 52, 48, 99, 48, 51, 102, 56, 98, 50, 50, 100, 52, 101, 57, 56, 49, 49, 52, 98, 48, 52, 97, 51, 50, 100, 97, 54, 98, 101, 100, 49, 98, 102, 36, 70, 76, 65, 71, 36, 34, 44, 32, 34, 105, 100, 34, 58, 32, 34, 49, 48, 34, 44, 32, 34, 107, 101, 121, 34, 58, 32, 34, 110, 33, 74, 74, 78, 97, 72, 109, 68, 107, 52, 86, 108, 109, 101, 78, 102, 78, 117, 117, 78, 65, 126, 126, 34, 125, 9, 9, 9, 9, 9, 9, 9, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+b'7b22666c6167223a20225e464c41475e3837313331363335326562323066363938323931646334643463353637383234306330336638623232643465393831313462303461333264613662656431626624464c414724222c20226964223a20223130222c20226b6579223a20226e214a4a4e61486d446b34566c6d654e664e75754e417e7e227d09090909090909090900000000000000000000000000000000'
+{"flag": "^FLAG^871316352eb20f698291dc4d4c5678240c03f8b22d4e98114b04a32da6bed1bf$FLAG$", "id": "10", "key": "n!JJNaHmDk4VlmeNfNuuNA~~"}								
+Solución block 9 pos : 15
+[123, 34, 102, 108, 97, 103, 34, 58, 32, 34, 94, 70, 76, 65, 71, 94, 56, 55, 49, 51, 49, 54, 51, 53, 50, 101, 98, 50, 48, 102, 54, 57, 56, 50, 57, 49, 100, 99, 52, 100, 52, 99, 53, 54, 55, 56, 50, 52, 48, 99, 48, 51, 102, 56, 98, 50, 50, 100, 52, 101, 57, 56, 49, 49, 52, 98, 48, 52, 97, 51, 50, 100, 97, 54, 98, 101, 100, 49, 98, 102, 36, 70, 76, 65, 71, 36, 34, 44, 32, 34, 105, 100, 34, 58, 32, 34, 49, 48, 34, 44, 32, 34, 107, 101, 121, 34, 58, 32, 34, 110, 33, 74, 74, 78, 97, 72, 109, 68, 107, 52, 86, 108, 109, 101, 78, 102, 78, 117, 117, 78, 65, 126, 126, 34, 125, 9, 9, 9, 9, 9, 9, 9, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+b'7b22666c6167223a20225e464c41475e3837313331363335326562323066363938323931646334643463353637383234306330336638623232643465393831313462303461333264613662656431626624464c414724222c20226964223a20223130222c20226b6579223a20226e214a4a4e61486d446b34566c6d654e664e75754e417e7e227d09090909090909090900000000000000000000000000000001'
+{"flag": "^FLAG^871316352eb20f698291dc4d4c5678240c03f8b22d4e98114b04a32da6bed1bf$FLAG$", "id": "10", "key": "n!JJNaHmDk4VlmeNfNuuNA~~"}								
+Solución block 9 pos : 14
+[123, 34, 102, 108, 97, 103, 34, 58, 32, 34, 94, 70, 76, 65, 71, 94, 56, 55, 49, 51, 49, 54, 51, 53, 50, 101, 98, 50, 48, 102, 54, 57, 56, 50, 57, 49, 100, 99, 52, 100, 52, 99, 53, 54, 55, 56, 50, 52, 48, 99, 48, 51, 102, 56, 98, 50, 50, 100, 52, 101, 57, 56, 49, 49, 52, 98, 48, 52, 97, 51, 50, 100, 97, 54, 98, 101, 100, 49, 98, 102, 36, 70, 76, 65, 71, 36, 34, 44, 32, 34, 105, 100, 34, 58, 32, 34, 49, 48, 34, 44, 32, 34, 107, 101, 121, 34, 58, 32, 34, 110, 33, 74, 74, 78, 97, 72, 109, 68, 107, 52, 86, 108, 109, 101, 78, 102, 78, 117, 117, 78, 65, 126, 126, 34, 125, 9, 9, 9, 9, 9, 9, 9, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 67, 1]
+b'7b22666c6167223a20225e464c41475e3837313331363335326562323066363938323931646334643463353637383234306330336638623232643465393831313462303461333264613662656431626624464c414724222c20226964223a20223130222c20226b6579223a20226e214a4a4e61486d446b34566c6d654e664e75754e417e7e227d09090909090909090900000000000000000000000000004301'
+{"flag": "^FLAG^871316352eb20f698291dc4d4c5678240c03f8b22d4e98114b04a32da6bed1bf$FLAG$", "id": "10", "key": "n!JJNaHmDk4VlmeNfNuuNA~~"}								C
+Solución block 9 pos : 13
+[123, 34, 102, 108, 97, 103, 34, 58, 32, 34, 94, 70, 76, 65, 71, 94, 56, 55, 49, 51, 49, 54, 51, 53, 50, 101, 98, 50, 48, 102, 54, 57, 56, 50, 57, 49, 100, 99, 52, 100, 52, 99, 53, 54, 55, 56, 50, 52, 48, 99, 48, 51, 102, 56, 98, 50, 50, 100, 52, 101, 57, 56, 49, 49, 52, 98, 48, 52, 97, 51, 50, 100, 97, 54, 98, 101, 100, 49, 98, 102, 36, 70, 76, 65, 71, 36, 34, 44, 32, 34, 105, 100, 34, 58, 32, 34, 49, 48, 34, 44, 32, 34, 107, 101, 121, 34, 58, 32, 34, 110, 33, 74, 74, 78, 97, 72, 109, 68, 107, 52, 86, 108, 109, 101, 78, 102, 78, 117, 117, 78, 65, 126, 126, 34, 125, 9, 9, 9, 9, 9, 9, 9, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 248, 67, 1]
+b'7b22666c6167223a20225e464c41475e3837313331363335326562323066363938323931646334643463353637383234306330336638623232643465393831313462303461333264613662656431626624464c414724222c20226964223a20223130222c20226b6579223a20226e214a4a4e61486d446b34566c6d654e664e75754e417e7e227d09090909090909090900000000000000000000000000f84301'
+Solución block 9 pos : 13
+[123, 34, 102, 108, 97, 103, 34, 58, 32, 34, 94, 70, 76, 65, 71, 94, 56, 55, 49, 51, 49, 54, 51, 53, 50, 101, 98, 50, 48, 102, 54, 57, 56, 50, 57, 49, 100, 99, 52, 100, 52, 99, 53, 54, 55, 56, 50, 52, 48, 99, 48, 51, 102, 56, 98, 50, 50, 100, 52, 101, 57, 56, 49, 49, 52, 98, 48, 52, 97, 51, 50, 100, 97, 54, 98, 101, 100, 49, 98, 102, 36, 70, 76, 65, 71, 36, 34, 44, 32, 34, 105, 100, 34, 58, 32, 34, 49, 48, 34, 44, 32, 34, 107, 101, 121, 34, 58, 32, 34, 110, 33, 74, 74, 78, 97, 72, 109, 68, 107, 52, 86, 108, 109, 101, 78, 102, 78, 117, 117, 78, 65, 126, 126, 34, 125, 9, 9, 9, 9, 9, 9, 9, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 216, 67, 1]
+b'7b22666c6167223a20225e464c41475e3837313331363335326562323066363938323931646334643463353637383234306330336638623232643465393831313462303461333264613662656431626624464c414724222c20226964223a20223130222c20226b6579223a20226e214a4a4e61486d446b34566c6d654e664e75754e417e7e227d09090909090909090900000000000000000000000000d84301'
+[123, 34, 102, 108, 97, 103, 34, 58, 32, 34, 94, 70, 76, 65, 71, 94, 56, 55, 49, 51, 49, 54, 51, 53, 50, 101, 98, 50, 48, 102, 54, 57, 56, 50, 57, 49, 100, 99, 52, 100, 52, 99, 53, 54, 55, 56, 50, 52, 48, 99, 48, 51, 102, 56, 98, 50, 50, 100, 52, 101, 57, 56, 49, 49, 52, 98, 48, 52, 97, 51, 50, 100, 97, 54, 98, 101, 100, 49, 98, 102, 36, 70, 76, 65, 71, 36, 34, 44, 32, 34, 105, 100, 34, 58, 32, 34, 49, 48, 34, 44, 32, 34, 107, 101, 121, 34, 58, 32, 34, 110, 33, 74, 74, 78, 97, 72, 109, 68, 107, 52, 86, 108, 109, 101, 78, 102, 78, 117, 117, 78, 65, 126, 126, 34, 125, 9, 9, 9, 9, 9, 9, 9, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 216, 67, 1]
+b'7b22666c6167223a20225e464c41475e3837313331363335326562323066363938323931646334643463353637383234306330336638623232643465393831313462303461333264613662656431626624464c414724222c20226964223a20223130222c20226b6579223a20226e214a4a4e61486d446b34566c6d654e664e75754e417e7e227d09090909090909090900000000000000000000000000d84301'
+Traceback (most recent call last):
+  File "padding_oracle.py", line 82, in <module>
+    print_decoded_bytes(decoded_bytes)
+  File "padding_oracle.py", line 23, in print_decoded_bytes
+    print(db.decode('utf8'))    
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xd8 in position 157: invalid continuation byte
+pablo@xiaomi:~/Documentos/hackerone/herramientas/hard_flag_encrypted_pastebin$ 
