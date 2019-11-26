@@ -48,4 +48,4 @@ def decript_data(url, hash):
     r = requests.get(f'{url}?post={ehash}',  allow_redirects=False)
     if 'PaddingException' in r.text:
         raise Exception('error de padding')
-    return extract_data(r.text)
+    return r.text
