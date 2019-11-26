@@ -5,7 +5,7 @@ rhash = re.compile(r"href=\"\?post=(.*?)\">")
 rtitle = re.compile(r"<h1>(.*?)</h1>")
 rbody = re.compile(r"<pre>\n*(.*?)\n*</pre>", re.MULTILINE | re.S)
 
-import common
+import u.common
 
 def extract_hash(text):
     m = rhash.search(text)
@@ -39,11 +39,11 @@ def encript_data(url, title, body):
     #p = requests.post(url, data={ 'title':title, 'body':body }, proxies={'http':'http://127.0.0.1:8080'}, allow_redirects=False)
     p = requests.post(url, data={ 'title':title, 'body':body }, allow_redirects=False)
     hash_ = extract_hash(p.text)
-    dhash = common.b64d(hash_)
+    dhash = u.common.b64d(hash_)
     return dhash
 
 def decript_data(url, hash):
-    ehash = common.b64e(hash)
+    ehash = u.common.b64e(hash)
     #r = requests.get(f'{url}?post={ehash}',  proxies={'http':'http://127.0.0.1:8080'}, allow_redirects=False)
     r = requests.get(f'{url}?post={ehash}',  allow_redirects=False)
     if 'PaddingException' in r.text:

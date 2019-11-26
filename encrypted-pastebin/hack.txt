@@ -1,0 +1,4 @@
+reinicio la instancia asi veo los indices de los hashes
+
+python3 obtener_hash.py 'http://34.74.105.127/6f80071338/'
+
