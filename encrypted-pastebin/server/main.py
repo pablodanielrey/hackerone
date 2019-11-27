@@ -58,9 +58,12 @@ def pad(data):
 """
 
 def process_request(postCt):
-    post = json.loads(decryptLink(postCt).decode('utf8'))
-    # ahora se accede a los datos del post para retornar.
-    return post
+    try:
+        post = json.loads(decryptLink(postCt).decode('utf8'))
+        # ahora se accede a los datos del post para retornar.
+        return post
+    except Exception as e:
+        return str(e.__class__)
 
 def decryptLink(data):
     ddata = u.common.b64d(data)
