@@ -23,7 +23,7 @@ hash_ = memoryview(hash_b)
 decoded_bytes = [0] * len(hash_)
 
 blocks = int(len(hash_) / 16)
-initial_block = blocks - 2
+initial_block = blocks - 1
 
 print(f"Trabajando con \n {hash_data}")
 print(f"Longitud del hash : {len(hash_data)}")
@@ -61,14 +61,11 @@ for block_index in range(initial_block, 0, -1):
         print(f'Procesando bloque {block_index} byte {pos}')
         padding_oracle_data['working_byte'] = pos
 
-        #corrijo el padding para el bloque en proceso.        
-        padding = 16 - pos
-        for pad in range(pos,16):
-            working_block[pad] = decoded_bytes[pad] ^ block_data[pad] ^ padding
-            print(f"Woking Block con padding : {binascii.hexlify(working_block)}")
+        
 
         # pruebo todos los valores de bytes, ultimo el valor original
         bytes_to_try = [x for x in range(0,block_data[pos])] + [x for x in range(block_data[pos]+1,256)] + [block_data[pos]]
+        print(f"Bytes to try {bytes_to_try}")
         tries = 0
         for c in bytes_to_try:
             if byte_found:
@@ -81,8 +78,16 @@ for block_index in range(initial_block, 0, -1):
             try:
                 decript_data(working_buffer)
                 print(f"Encontrado {c} para {block_index} en la pos {pos}")
+
+                padding = 16 - pos
                 decoded_bytes[pos] = block_data[pos] ^ working_block[pos] ^ padding
                 print(f"Decodificado {decoded_bytes[pos]} Original {block_data[pos]} Actual {working_block[pos]} Padd {padding}")
+
+                #corrijo el padding para el bloque en proceso.        
+                for pad in range(pos,16):
+                    working_block[pad] = decoded_bytes[pad] ^ block_data[pad] ^ (padding + 1)
+                    print(f"Woking Block con padding : {binascii.hexlify(working_block)}")
+
                 byte_found = True
                 print(binascii.hexlify(padding_oracle_data['decoded_bytes']))
                 try:
