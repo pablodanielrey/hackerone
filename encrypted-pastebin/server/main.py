@@ -45,13 +45,10 @@ def encrypt(data):
     encrypted = cipher.encrypt(data)
     return encrypted + iv
 
-def pad(data):
-    if len(data) % 16 == 0:
-        """ asumo que  en esta condición crea otro bloque completo de padding porque siempre hace unpad cuando procesa la solicitud """
-        return data + bytes([16] * 16)
-    padd_bytes = (((int(len(data) / 16)) + 1) * 16) - len(data)
-    return data + bytes([padd_bytes] * padd_bytes)
 
+def pad(data):
+    pad_byte = 16 - (len(data) % 16)
+    return data + bytes(pad_byte for i in range(pad_byte))
 
 """
     Esta parte de código sería la que corre en el servidor para procesar cada hash enviado.
@@ -63,20 +60,26 @@ def process_request(postCt):
     return post
 
 def decryptLink(data):
-    data = u.common.b64d(data)
-    iv = data[-16:]
-    payload = data[:-16]
+    ddata = u.common.b64d(data)
+    iv = ddata[-16:]
+    payload = ddata[:-16]
     cipher = AES.new(staticKey, AES.MODE_CBC, iv)
     return unpad(cipher.decrypt(payload))
 
-def unpad(data):
-    padding = data[-1]
-    pad_bytes = data[-padding:]
-    for b in pad_bytes:
-        if b != padding:
-            raise PaddingException()
-    return data[:-padding]
 
+def unpad(data):
+    if not data or len(data) % 16:
+        raise PaddingException()
+
+    padding = data[-1]
+    if padding > 16:
+        raise PaddingException()
+
+    pad_bytes = data[-padding:]
+    if not all(i == padding for i in pad_bytes):
+        raise PaddingException()
+
+    return data[:-padding]
 
 """
 inferido a partir de los errores reportados
