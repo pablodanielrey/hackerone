@@ -23,7 +23,7 @@ hash_ = memoryview(hash_b)
 decoded_bytes = [0] * len(hash_)
 
 blocks = int(len(hash_) / 16)
-initial_block = blocks -1 
+initial_block = blocks - 2
 
 print(f"Trabajando con \n {hash_data}")
 print(f"Longitud del hash : {len(hash_data)}")
