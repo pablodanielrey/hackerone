@@ -56,5 +56,5 @@ print(f'bloque a desencriptar {c2.hex()}')
 
 des = padding_oracle(c1,c2)
 
-print(f'bloque original      : {c2.hex()}')
+print(f'bloque original      : {block_to_encrypt[-16:].hex()}')
 print(f'bloque desencriptado : {des.hex()}')
