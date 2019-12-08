@@ -30,8 +30,8 @@ def encrypt(data):
     #iv = bytes([0x20] * 16)
     cipher = AES.new(staticKey, AES.MODE_CBC, iv)
     encrypted = cipher.encrypt(data)
-    #return encrypted + iv
-    return encrypted
+    return encrypted + iv
+    #return encrypted
 
 
 def pad(data):
@@ -53,9 +53,9 @@ def process_request(postCt):
 
 def decryptLink(data):
     ddata = u.common.b64d(data)
-    #iv = ddata[-16:]
-    #payload = ddata[:-16]
-    payload = ddata
+    iv = ddata[-16:]
+    payload = ddata[:-16]
+    #payload = ddata
     cipher = AES.new(staticKey, AES.MODE_CBC, iv)
     return unpad(cipher.decrypt(payload))
 
