@@ -2,3 +2,193 @@ reinicio la instancia asi veo los indices de los hashes
 
 python3 obtener_hash.py 'http://34.74.105.127/6f80071338/'
 
+
+
+---------------------------
+
+
+pablo@xiaomi:~/Documentos/hackerone/herramientas/hackerone/encrypted-pastebin$ python3 padding_oracle_server.py 
+d717ecc03268358b15adbc132926a339
+b90a86505e1673a4da8b242c789f06acd9b6062a6276c569cbe945765d95a5d3225e96066b06f844ed300d5f22ab11f32bc5bff2419372abcd3833c769fa45997d932e5c0952528ce273c4fd66e1cfbde2335315d55c7c2dee2b3c849109143865680d79caf051436016cf9fd022d661213e0fb57b78b7cb0ccfef0431645ec564431b6c845124bc7954f2f8bbf562f1
+byte 205 encontrado para posición 15
+byte 85 encontrado para posición 14
+byte 110 encontrado para posición 13
+byte 60 encontrado para posición 12
+byte 8 encontrado para posición 11
+byte 224 encontrado para posición 10
+byte 193 encontrado para posición 9
+byte 13 encontrado para posición 8
+byte 203 encontrado para posición 7
+byte 192 encontrado para posición 6
+byte 81 encontrado para posición 5
+byte 9 encontrado para posición 4
+byte 198 encontrado para posición 3
+byte 64 encontrado para posición 2
+byte 75 encontrado para posición 1
+byte 121 encontrado para posición 0
+487a417e7e227d090909090909090909
+HzA~~"}									
+byte 6 encontrado para posición 15
+byte 153 encontrado para posición 14
+byte 16 encontrado para posición 13
+byte 161 encontrado para posición 12
+byte 246 encontrado para posición 11
+byte 131 encontrado para posición 10
+byte 94 encontrado para posición 9
+byte 13 encontrado para posición 8
+byte 127 encontrado para posición 7
+byte 24 encontrado para posición 6
+byte 141 encontrado para posición 5
+byte 231 encontrado para posición 4
+byte 18 encontrado para posición 3
+byte 79 encontrado para posición 2
+byte 20 encontrado para posición 1
+byte 44 encontrado para posición 0
+59734c6621764335654f4a6c75314d66487a417e7e227d090909090909090909
+YsLf!vC5eOJlu1MfHzA~~"}									
+byte 77 encontrado para posición 15
+byte 70 encontrado para posición 14
+byte 67 encontrado para posición 13
+byte 183 encontrado para posición 12
+byte 161 encontrado para posición 11
+byte 0 encontrado para posición 10
+byte 14 encontrado para posición 9
+byte 159 encontrado para posición 8
+byte 65 encontrado para posición 7
+byte 29 encontrado para posición 6
+byte 117 encontrado para posición 5
+byte 249 encontrado para posición 4
+byte 52 encontrado para posición 3
+byte 127 encontrado para posición 2
+byte 15 encontrado para posición 1
+byte 195 encontrado para posición 0
+3133222c20226b6579223a202249507459734c6621764335654f4a6c75314d66487a417e7e227d090909090909090909
+13", "key": "IPtYsLf!vC5eOJlu1MfHzA~~"}									
+byte 158 encontrado para posición 15
+byte 237 encontrado para posición 14
+byte 216 encontrado para posición 13
+byte 64 encontrado para posición 12
+byte 156 encontrado para posición 11
+byte 171 encontrado para posición 10
+byte 86 encontrado para posición 9
+byte 202 encontrado para posición 8
+byte 169 encontrado para posición 7
+byte 122 encontrado para posición 6
+byte 125 encontrado para posición 5
+byte 66 encontrado para posición 4
+byte 16 encontrado para posición 3
+byte 108 encontrado para posición 2
+byte 218 encontrado para posición 1
+byte 73 encontrado para posición 0
+24464c414724222c20226964223a20223133222c20226b6579223a202249507459734c6621764335654f4a6c75314d66487a417e7e227d090909090909090909
+$FLAG$", "id": "13", "key": "IPtYsLf!vC5eOJlu1MfHzA~~"}									
+byte 254 encontrado para posición 15
+byte 37 encontrado para posición 14
+byte 200 encontrado para posición 13
+byte 9 encontrado para posición 12
+byte 167 encontrado para posición 11
+byte 87 encontrado para posición 10
+byte 9 encontrado para posición 9
+byte 164 encontrado para posición 8
+byte 198 encontrado para posición 7
+byte 74 encontrado para posición 6
+byte 171 encontrado para posición 5
+byte 44 encontrado para posición 4
+byte 203 encontrado para posición 3
+byte 129 encontrado para posición 2
+byte 168 encontrado para posición 1
+byte 15 encontrado para posición 0
+3462303461333264613662656431626624464c414724222c20226964223a20223133222c20226b6579223a202249507459734c6621764335654f4a6c75314d66487a417e7e227d090909090909090909
+4b04a32da6bed1bf$FLAG$", "id": "13", "key": "IPtYsLf!vC5eOJlu1MfHzA~~"}									
+byte 195 encontrado para posición 15
+byte 34 encontrado para posición 14
+byte 144 encontrado para posición 13
+byte 31 encontrado para posición 12
+byte 63 encontrado para posición 11
+byte 63 encontrado para posición 10
+byte 83 encontrado para posición 9
+byte 215 encontrado para posición 8
+byte 127 encontrado para posición 7
+byte 144 encontrado para posición 6
+byte 53 encontrado para posición 5
+byte 1 encontrado para posición 4
+byte 56 encontrado para posición 3
+byte 168 encontrado para posición 2
+byte 50 encontrado para posición 1
+byte 2 encontrado para posición 0
+306330336638623232643465393831313462303461333264613662656431626624464c414724222c20226964223a20223133222c20226b6579223a202249507459734c6621764335654f4a6c75314d66487a417e7e227d090909090909090909
+0c03f8b22d4e98114b04a32da6bed1bf$FLAG$", "id": "13", "key": "IPtYsLf!vC5eOJlu1MfHzA~~"}									
+byte 230 encontrado para posición 15
+byte 149 encontrado para posición 14
+byte 174 encontrado para posición 13
+byte 110 encontrado para posición 12
+byte 69 encontrado para posición 11
+byte 118 encontrado para posición 10
+byte 141 encontrado para posición 9
+byte 247 encontrado para posición 8
+byte 4 encontrado para posición 7
+byte 251 encontrado para posición 6
+byte 30 encontrado para posición 5
+byte 10 encontrado para posición 4
+byte 22 encontrado para posición 3
+byte 49 encontrado para posición 2
+byte 139 encontrado para posición 1
+byte 241 encontrado para posición 0
+38323931646334643463353637383234306330336638623232643465393831313462303461333264613662656431626624464c414724222c20226964223a20223133222c20226b6579223a202249507459734c6621764335654f4a6c75314d66487a417e7e227d090909090909090909
+8291dc4d4c5678240c03f8b22d4e98114b04a32da6bed1bf$FLAG$", "id": "13", "key": "IPtYsLf!vC5eOJlu1MfHzA~~"}									
+byte 148 encontrado para posición 15
+byte 50 encontrado para posición 14
+byte 250 encontrado para posición 13
+byte 76 encontrado para posición 12
+byte 27 encontrado para posición 11
+byte 64 encontrado para posición 10
+byte 233 encontrado para posición 9
+byte 224 encontrado para posición 8
+byte 152 encontrado para posición 7
+byte 74 encontrado para posición 6
+byte 43 encontrado para posición 5
+byte 99 encontrado para posición 4
+byte 110 encontrado para posición 3
+byte 185 encontrado para posición 2
+byte 50 encontrado para posición 1
+byte 145 encontrado para posición 0
+3837313331363335326562323066363938323931646334643463353637383234306330336638623232643465393831313462303461333264613662656431626624464c414724222c20226964223a20223133222c20226b6579223a202249507459734c6621764335654f4a6c75314d66487a417e7e227d090909090909090909
+871316352eb20f698291dc4d4c5678240c03f8b22d4e98114b04a32da6bed1bf$FLAG$", "id": "13", "key": "IPtYsLf!vC5eOJlu1MfHzA~~"}								
+byte 102 encontrado para posición 15
+byte 230 encontrado para posición 14
+byte 100 encontrado para posición 13
+byte 97 encontrado para posición 12
+byte 80 encontrado para posición 11
+byte 228 encontrado para posición 10
+byte 136 encontrado para posición 9
+byte 61 encontrado para posición 8
+byte 184 encontrado para posición 7
+byte 29 encontrado para posición 6
+byte 4 encontrado para posición 5
+byte 95 encontrado para posición 4
+byte 161 encontrado para posición 3
+byte 132 encontrado para posición 2
+byte 58 encontrado para posición 1
+byte 188 encontrado para posición 0
+7b22666c6167223a20225e464c41475e3837313331363335326562323066363938323931646334643463353637383234306330336638623232643465393831313462303461333264613662656431626624464c414724222c20226964223a20223133222c20226b6579223a202249507459734c6621764335654f4a6c75314d66487a417e7e227d090909090909090909
+{"flag": "^FLAG^871316352eb20f698291dc4d4c5678240c03f8b22d4e98114b04a32da6bed1bf$FLAG$", "id": "13", "key": "IPtYsLf!vC5eOJlu1MfHzA~~"}						
+byte 102 encontrado para posición 15
+byte 230 encontrado para posición 14
+byte 100 encontrado para posición 13
+byte 97 encontrado para posición 12
+byte 80 encontrado para posición 11
+byte 228 encontrado para posición 10
+byte 136 encontrado para posición 9
+byte 61 encontrado para posición 8
+byte 184 encontrado para posición 7
+byte 29 encontrado para posición 6
+byte 4 encontrado para posición 5
+byte 95 encontrado para posición 4
+byte 161 encontrado para posición 3
+byte 132 encontrado para posición 2
+byte 58 encontrado para posición 1
+byte 188 encontrado para posición 0
+7b22666c6167223a20225e464c41475e7b22666c6167223a20225e464c41475e3837313331363335326562323066363938323931646334643463353637383234306330336638623232643465393831313462303461333264613662656431626624464c414724222c20226964223a20223133222c20226b6579223a202249507459734c6621764335654f4a6c75314d66487a417e7e227d090909090909090909
+{"flag": "^FLAG^{"flag": "^FLAG^871316352eb20f698291dc4d4c5678240c03f8b22d4e98114b04a32da6bed1bf$FLAG$", "id": "13", "key": "IPtYsLf!vC5eOJlu1MfHzA~~"}				
+{"flag": "^FLAG^{"flag": "^FLAG^871316352eb20f698291dc4d4c5678240c03f8b22d4e98114b04a32da6bed1bf$FLAG$", "id": "13", "key": "IPtYsLf!vC5eOJlu1MfHzA~~"}				
+pablo@xiaomi:~/Documentos/hackerone/herramientas/hackerone/encrypted-pastebin$ 

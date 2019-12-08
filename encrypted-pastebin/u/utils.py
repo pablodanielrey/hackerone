@@ -35,8 +35,11 @@ def test_hash(url, hash):
     return r.text
 
 
-def encript_data(url, title, body):
-    p = requests.post(url, data={ 'title':title, 'body':body }, proxies={'http':'http://127.0.0.1:8080'}, allow_redirects=False)
+def encrypt_data(url, title, body, proxy=True):
+    if proxy:
+        p = requests.post(url, data={ 'title':title, 'body':body }, proxies={'http':'http://127.0.0.1:8080'}, allow_redirects=False)
+    else:
+        p = requests.post(url, data={ 'title':title, 'body':body }, allow_redirects=False)
     #p = requests.post(url, data={ 'title':title, 'body':body }, allow_redirects=False)
     hash_ = extract_hash(p.text)
     dhash = u.common.b64d(hash_)

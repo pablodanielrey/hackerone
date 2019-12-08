@@ -16,6 +16,8 @@ def padding_oracle(c1:bytes, c2:bytes, decrypt, check_padding_error) -> bytes:
             pad = pad + 1
             for a in range(i,16):
                 c1p[a] = pad ^ des[a] ^ c1[a]
+
+            print(f'byte {b} encontrado para posición {i}')
             break
         else:
             print('no se encontro nada!!! esto es un error')
