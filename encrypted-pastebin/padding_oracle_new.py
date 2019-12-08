@@ -23,8 +23,13 @@ if __name__ == '__main__':
     print(hash_.hex())
 
     decrip = None
-    for i in range(len(hash_), -1, -16):
+    for i in range(len(hash_), 0, -16):
+        print('-'*16)
+        print(f'Pasada {i}')
+        print('-'*16)
+
         if i-32 < 0:
+            print('Procesando IV')
             c1 = iv
             c2 = hash_[:16]
         else:
