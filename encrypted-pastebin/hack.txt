@@ -192,3 +192,216 @@ byte 188 encontrado para posición 0
 {"flag": "^FLAG^{"flag": "^FLAG^871316352eb20f698291dc4d4c5678240c03f8b22d4e98114b04a32da6bed1bf$FLAG$", "id": "13", "key": "IPtYsLf!vC5eOJlu1MfHzA~~"}				
 {"flag": "^FLAG^{"flag": "^FLAG^871316352eb20f698291dc4d4c5678240c03f8b22d4e98114b04a32da6bed1bf$FLAG$", "id": "13", "key": "IPtYsLf!vC5eOJlu1MfHzA~~"}				
 pablo@xiaomi:~/Documentos/hackerone/herramientas/hackerone/encrypted-pastebin$ 
+
+
+--------
+
+
+ahora lo ejecuto sobre una vm recién iniciada.
+
+
+pablo@xiaomi:~/Documentos/hackerone/herramientas/hackerone/encrypted-pastebin$ python3 padding_oracle_server.py 
+9a1c2361969924f8b8e84aaa380a40ef
+952c3f86b97a4037ea46b813602dc8b74e6ad025ea495cbb46292c392b26d0c6f0eb5179596bbdbbecb87899be55919a8a80b8b55dfbaecf39256e0b4236607c696ba958ec619892d26c52396a86423672d0b3c396a2437020e4df82d90572ed886b59b494355f23f1cf7e38151e4930a32ec7fc6895c2accfac7d6c001f293e1b907958cfe4a1ca8d11646c890aa430
+byte 53 encontrado para posición 15
+byte 33 encontrado para posición 14
+byte 22 encontrado para posición 13
+byte 14 encontrado para posición 12
+byte 99 encontrado para posición 11
+byte 113 encontrado para posición 10
+byte 161 encontrado para posición 9
+byte 205 encontrado para posición 8
+byte 175 encontrado para posición 7
+byte 194 encontrado para posición 6
+byte 227 encontrado para posición 5
+byte 70 encontrado para posición 4
+byte 143 encontrado para posición 3
+byte 183 encontrado para posición 2
+byte 112 encontrado para posición 1
+byte 255 encontrado para posición 0
+4c517e7e227d0a0a0a0a0a0a0a0a0a0a
+LQ~~"}
+
+
+
+
+
+
+
+
+
+
+byte 93 encontrado para posición 15
+byte 51 encontrado para posición 14
+byte 71 encontrado para posición 13
+byte 105 encontrado para posición 12
+byte 100 encontrado para posición 11
+byte 53 encontrado para posición 10
+byte 240 encontrado para posición 9
+byte 189 encontrado para posición 8
+byte 27 encontrado para posición 7
+byte 35 encontrado para posición 6
+byte 88 encontrado para posición 5
+byte 255 encontrado para posición 4
+byte 225 encontrado para posición 3
+byte 25 encontrado para posición 2
+byte 87 encontrado para posición 1
+byte 207 encontrado para posición 0
+57334e586766763144384d59785a786c4c517e7e227d0a0a0a0a0a0a0a0a0a0a
+W3NXgfv1D8MYxZxlLQ~~"}
+
+
+
+
+
+
+
+
+
+
+byte 131 encontrado para posición 15
+byte 68 encontrado para posición 14
+byte 50 encontrado para posición 13
+byte 165 encontrado para posición 12
+byte 165 encontrado para posición 11
+byte 249 encontrado para posición 10
+byte 217 encontrado para posición 9
+byte 10 encontrado para posición 8
+byte 0 encontrado para posición 7
+byte 44 encontrado para posición 6
+byte 194 encontrado para posición 5
+byte 184 encontrado para posición 4
+byte 238 encontrado para posición 3
+byte 145 encontrado para posición 2
+byte 253 encontrado para posición 1
+byte 80 encontrado para posición 0
+32222c20226b6579223a20227834346f57334e586766763144384d59785a786c4c517e7e227d0a0a0a0a0a0a0a0a0a0a
+2", "key": "x44oW3NXgfv1D8MYxZxlLQ~~"}
+
+
+
+
+
+
+
+
+
+
+byte 21 encontrado para posición 15
+byte 96 encontrado para posición 14
+byte 191 encontrado para posición 13
+byte 76 encontrado para posición 12
+byte 88 encontrado para posición 11
+byte 61 encontrado para posición 10
+byte 73 encontrado para posición 9
+byte 250 encontrado para posición 8
+byte 183 encontrado para posición 7
+byte 176 encontrado para posición 6
+byte 78 encontrado para posición 5
+byte 167 encontrado para posición 4
+byte 20 encontrado para posición 3
+byte 235 encontrado para posición 2
+byte 34 encontrado para posición 1
+byte 93 encontrado para posición 0
+24464c414724222c20226964223a202232222c20226b6579223a20227834346f57334e586766763144384d59785a786c4c517e7e227d0a0a0a0a0a0a0a0a0a0a
+$FLAG$", "id": "2", "key": "x44oW3NXgfv1D8MYxZxlLQ~~"}
+
+
+
+
+
+
+
+
+
+
+byte 24 encontrado para posición 15
+byte 0 encontrado para posición 14
+no se encontro nada!!! esto es un error
+no se encontro nada!!! esto es un error
+no se encontro nada!!! esto es un error
+no se encontro nada!!! esto es un error
+no se encontro nada!!! esto es un error
+no se encontro nada!!! esto es un error
+no se encontro nada!!! esto es un error
+no se encontro nada!!! esto es un error
+no se encontro nada!!! esto es un error
+no se encontro nada!!! esto es un error
+^CTraceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 377, in _make_request
+    httplib_response = conn.getresponse(buffering=True)
+TypeError: getresponse() got an unexpected keyword argument 'buffering'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "padding_oracle_server.py", line 41, in <module>
+    des = padding_oracle(c1,c2, decrypt, check_padding_error)
+  File "/home/pablo/Documentos/hackerone/herramientas/hackerone/encrypted-pastebin/padding_oracle/padding_oracle.py", line 10, in padding_oracle
+    p_ = decrypt(w)
+  File "padding_oracle_server.py", line 12, in decrypt
+    r = requests.get(f'{url}?post={de}',  allow_redirects=False)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 449, in send
+    timeout=timeout
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 380, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/lib/python3.7/http/client.py", line 1321, in getresponse
+    response.begin()
+  File "/usr/lib/python3.7/http/client.py", line 296, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.7/http/client.py", line 257, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/lib/python3.7/socket.py", line 589, in readinto
+    return self._sock.recv_into(b)
+KeyboardInterrupt
+
+
+
+
+.....
+
+si cambio el id requerido me tira:
+
+
+
+^FLAG^84d7a8faaec156942d9bcf51fb823fc185f3e4045483071d58b1bc4001063a10$FLAG$
+Traceback (most recent call last):
+  File "./main.py", line 72, in index
+    abort(404)
+  File "/usr/local/lib/python2.7/site-packages/werkzeug/exceptions.py", line 707, in abort
+    return _aborter(status, *args, **kwargs)
+  File "/usr/local/lib/python2.7/site-packages/werkzeug/exceptions.py", line 687, in __call__
+    raise self.mapping[code](*args, **kwargs)
+NotFound: 404 Not Found: The requested URL was not found on the server.  If you entered the URL manually please check your spelling and try again.
+
+pablo@xiaomi:~/Documentos/hackerone/herramientas/hackerone/encrypted-pastebin$ 
+
+
+.---------
+
+
+si reemplazo el bloque enviado por:
+
+decrypted = b'$FLAG$", "id": "2", "key": "x44oW3NXgfv1D8MYxZxlLQ~~"}'
+caracteres = b'{"id":"1", "a":"'
+
+
+Attempting to decrypt page with title: ^FLAG^9830e8c61ddd79cf59d9620a41cbefcefa3449bb959afb2b5a2845b02922db71$FLAG$
+Traceback (most recent call last):
+  File "./main.py", line 74, in index
+    body = decryptPayload(post['key'], body)
+  File "./common.py", line 37, in decryptPayload
+    return unpad(cipher.decrypt(data))
+  File "./common.py", line 22, in unpad
+    raise PaddingException()
+PaddingException

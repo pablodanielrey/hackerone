@@ -8,8 +8,8 @@ def decrypt(data:memoryview) -> bytes:
     global iv, url
     data_to_send = iv + bytes(data)
     de = b64e(data_to_send)
-    #r = requests.get(f'{url}?post={de}',  proxies={'http':'http://127.0.0.1:8080'}, allow_redirects=False)
-    r = requests.get(f'{url}?post={de}',  allow_redirects=False)
+    r = requests.get(f'{url}?post={de}',  proxies={'http':'http://127.0.0.1:8080'}, allow_redirects=False)
+    #r = requests.get(f'{url}?post={de}',  allow_redirects=False)
     return r.text
 
 def check_padding_error(d) -> bool:
@@ -20,8 +20,9 @@ if __name__ == '__main__':
 
     url = 'http://34.74.105.127/71a7d1053f/'
 
-    hashi_ = encrypt_data(url, 'titulo', 'cuerpo')
+    #hashi_ = encrypt_data(url, 'titulo', 'cuerpo')
     #hashi_ = b64d(coded_hash)
+    hashi_ = bytes.fromhex('952c3f86b97a4037ea46b813602dc8b74e6ad025ea495cbb46292c392b26d0c6f0eb5179596bbdbbecb87899be55919a8a80b8b55dfbaecf39256e0b4236607c696ba958ec619892d26c52396a86423672d0b3c396a2437020e4df82d90572ed886b59b494355f23f1cf7e38151e4930a32ec7fc6895c2accfac7d6c001f293e1b907958cfe4a1ca8d11646c890aa430')
     iv = hashi_[:16]
     hash_ = hashi_[16:]
 
@@ -48,4 +49,3 @@ if __name__ == '__main__':
             print(decrip.decode('utf8'))        
         except Exception:
             pass
-    print(decrip.decode('utf8'))

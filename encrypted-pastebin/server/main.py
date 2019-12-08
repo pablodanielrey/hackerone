@@ -42,14 +42,25 @@ def pad(data):
     Esta parte de código sería la que corre en el servidor para procesar cada hash enviado.
 """
 
+def obtener_post_desde_base(id):
+    return ('titulo','cuerpo')
+
+
 def process_request(postCt):
     try:
         post = json.loads(decryptLink(postCt).decode('utf8'))
-        # ahora se accede a los datos del post para retornar.
-        return post
+        id = post['id']
+        title, body = obtener_post_desde_base(id)
+        body = decryptPayload(post['key'], body)
+        return body
     except Exception:
         return traceback.format_exc()
         #return str(e.__class__)
+
+
+def decryptPayload(key, data):
+    cipher = AES.new(key, AES.MODE_CBC, iv)
+    return unpad(cipher.decrypt(data))
 
 def decryptLink(data):
     ddata = u.common.b64d(data)
