@@ -1,3 +1,4 @@
+import traceback
 import json
 import binascii
 from Crypto.Cipher import AES
@@ -9,35 +10,19 @@ class PaddingException(Exception):
     pass
 
 staticKey = bytes([0] * 16)
-
 iv = bytes([2] * 16)
 
 """
     Esta parte de código ayuda a encriptar un dato válido de ejemplo.
     infiero que hace este proceso desde los errores reportados y análisis de los datos desencriptados.
-    el iv deberían ser los últimos 16 bytes agregados al hash encriptado
+    el iv, por el comportamiento de error, deberían ser los últimos 16 bytes agregados al hash encriptado
 """
 
 def process_get():
     data = '{"flag": "^FLAG^871316352eb20f698291dc4d4c5678240c03f8b22d4e98114b04a32da6bed1bf$FLAG$", "id": "10", "key": "n!JJNaHmDk4VlmeNfNuuNA~~"}'
     encoded = data.encode('utf8')
-
-    print(encoded)
-    print(binascii.hexlify(encoded))
-    print(len(encoded))
-
     padded = pad(encoded)
-
-    print(padded)
-    print(binascii.hexlify(padded))
-    print(len(padded))
-
     hash_ = encrypt(padded)
-
-    print(hash_)
-    print(binascii.hexlify(hash_))
-    print(len(hash_))
-
     bhash = u.common.b64e(hash_)
     return bhash
 
@@ -62,8 +47,9 @@ def process_request(postCt):
         post = json.loads(decryptLink(postCt).decode('utf8'))
         # ahora se accede a los datos del post para retornar.
         return post
-    except Exception as e:
-        return str(e.__class__)
+    except Exception:
+        return traceback.format_exc()
+        #return str(e.__class__)
 
 def decryptLink(data):
     ddata = u.common.b64d(data)

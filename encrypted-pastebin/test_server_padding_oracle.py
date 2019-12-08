@@ -115,3 +115,4 @@ for block_index in range(initial_block, 0, -1):
     padding_oracle_data['blocks_decoded'].append(block_index)
 
 print(padding_oracle_data)
+print(padding_oracle_data['decoded_bytes'].decode('utf8'))
