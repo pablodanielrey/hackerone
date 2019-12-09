@@ -417,3 +417,57 @@ Traceback (most recent call last):
   File "./main.py", line 71, in index
     if cur.execute('SELECT title, body FROM posts WHERE id=%s' % post['id']) == 0:
 KeyError: 'id'
+
+
+
+------
+
+
+enviando algo cualquiera de key:
+
+
+^FLAG^84d7a8faaec156942d9bcf51fb823fc185f3e4045483071d58b1bc4001063a10$FLAG$
+Attempting to decrypt page with title: ^FLAG^9830e8c61ddd79cf59d9620a41cbefcefa3449bb959afb2b5a2845b02922db71$FLAG$
+Traceback (most recent call last):
+  File "./main.py", line 74, in index
+    body = decryptPayload(post['key'], body)
+  File "./common.py", line 36, in decryptPayload
+    cipher = AES.new(b64d(key), AES.MODE_CBC, iv)
+  File "./common.py", line 11, in <lambda>
+    b64d = lambda x: base64.decodestring(x.replace('~', '=').replace('!', '/').replace('-', '+'))
+  File "/usr/local/lib/python2.7/base64.py", line 328, in decodestring
+    return binascii.a2b_base64(s)
+Error: Incorrect padding
+
+
+------------
+
+tratando de hacer un sql injection
+
+^FLAG^84d7a8faaec156942d9bcf51fb823fc185f3e4045483071d58b1bc4001063a10$FLAG$
+Traceback (most recent call last):
+  File "./main.py", line 71, in index
+    if cur.execute('SELECT title, body FROM posts WHERE id=%s' % post['id']) == 0:
+  File "/usr/local/lib/python2.7/site-packages/MySQLdb/cursors.py", line 255, in execute
+    self.errorhandler(self, exc, value)
+  File "/usr/local/lib/python2.7/site-packages/MySQLdb/connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+ProgrammingError: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' union select body, title from posts order by id asc limit 1 #' at line 1")
+
+
+-----------
+
+con el union pude sacar el body del post 1.
+
+^FLAG^84d7a8faaec156942d9bcf51fb823fc185f3e4045483071d58b1bc4001063a10$FLAG$
+Attempting to decrypt page with title: YEEL3Dw3Fz!FcMdod3w97J2m22RqdkhjjVZzXBLNiJhXgmQCM7CT2YSbQT5P0Btu5UFuT4oT!-MY!no71DCpVWW0QvOAXQW-GOnXzqGqMlC8SOBuKmy9580l5SMzXf1t
+Traceback (most recent call last):
+  File "./main.py", line 74, in index
+    body = decryptPayload(post['key'], body)
+  File "./common.py", line 36, in decryptPayload
+    cipher = AES.new(b64d(key), AES.MODE_CBC, iv)
+  File "./common.py", line 11, in <lambda>
+    b64d = lambda x: base64.decodestring(x.replace('~', '=').replace('!', '/').replace('-', '+'))
+  File "/usr/local/lib/python2.7/base64.py", line 328, in decodestring
+    return binascii.a2b_base64(s)
+Error: Incorrect padding

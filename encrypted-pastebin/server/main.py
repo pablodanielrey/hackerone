@@ -62,7 +62,7 @@ def process_request(postCt):
 
 
 def decryptPayload(key, data):
-    cipher = AES.new(key, AES.MODE_CBC, iv)
+    cipher = AES.new(u.common.b64d(key), AES.MODE_CBC, iv)
     return unpad(cipher.decrypt(data))
 
 def decryptLink(data):

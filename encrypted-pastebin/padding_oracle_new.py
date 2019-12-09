@@ -54,9 +54,9 @@ def ejecutar_padding_oracle(hashi_):
 
 
 if __name__ == '__main__':
-    coded_hash = main.process_get()
+    #coded_hash = main.process_get()
+    coded_hash = 'YEEL3Dw3Fz!FcMdod3w97J2m22RqdkhjjVZzXBLNiJhXgmQCM7CT2YSbQT5P0Btu5UFuT4oT!-MY!no71DCpVWW0QvOAXQW-GOnXzqGqMlC8SOBuKmy9580l5SMzXf1t'
     hashi_ = b64d(coded_hash)
-    """
     decrip = ejecutar_padding_oracle(hashi_)
 
     #imprimo el hash por bloque.
@@ -64,39 +64,3 @@ if __name__ == '__main__':
         bloque = int(i / 16)
         print(f'{bloque:02x}    {decrip[i:i+16]}')
 
-    """
-
-    """
-        realizo un segundo ataque ya que tengo los caracteres decodificados, puedo calcular los caracteres 
-        que quiero que resulten en el primer bloque!!!
-        nuevo_iv = iv ^ p1 ^ caracteres_deseados
-    """
-
-    #elimino los bloques que no necesito
-    hashi_ = hashi_[16*5:]
-    decrip = ejecutar_padding_oracle(hashi_)
-
-    #imprimo el hash por bloque.
-    for i in range(0, len(decrip), 16):
-        bloque = int(i / 16)
-        print(f'{bloque:02x}    {decrip[i:i+16]}')
-
-    #calculo los xors con los caracteres finales deseados para generar el nuevo IV.
-    caracteres = b'{"id":"111111111'
-    antiguo_iv = hashi_[:16]
-    p1 = decrip[:16]
-
-    print('calculando nuevo IV')
-    nuevo_iv = [0] * 16
-    for i in range(16):
-        nuevo_iv[i] = antiguo_iv[i] ^ p1[i] ^ caracteres[i]
-        print(f'{nuevo_iv[i]:02x} <-- {antiguo_iv[i]:02x} ^ {p1[i]:02x} ^ {caracteres[i]:02x}')
-    print(bytes(nuevo_iv).hex())
-
-    nuevo_hash = bytes(nuevo_iv) + hashi_[16:]
-    decrip = ejecutar_padding_oracle(nuevo_hash)
-
-    #imprimo el hash por bloque.
-    for i in range(0, len(decrip), 16):
-        bloque = int(i / 16)
-        print(f'{bloque:02x}    {decrip[i:i+16]}')
