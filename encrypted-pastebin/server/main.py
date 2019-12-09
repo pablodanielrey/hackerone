@@ -43,16 +43,19 @@ def pad(data):
 """
 
 def obtener_post_desde_base(id):
+    #if cur.execute('SELECT title, body FROM posts WHERE id=%s' % post['id']) == 0:
+    #       abort(404)  
     return ('titulo','cuerpo')
 
 
 def process_request(postCt):
     try:
         post = json.loads(decryptLink(postCt).decode('utf8'))
-        id = post['id']
-        title, body = obtener_post_desde_base(id)
-        body = decryptPayload(post['key'], body)
-        return body
+        #id = post['id']
+        #title, body = obtener_post_desde_base(id)
+        #body = decryptPayload(post['key'], body)
+        #return body
+        return post
     except Exception:
         return traceback.format_exc()
         #return str(e.__class__)
