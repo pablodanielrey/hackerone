@@ -3,10 +3,12 @@
 
 
 int main() {
-    char buffer[16];
-    printf("Igrese por favor sus datos");
-    scanf("%s", &buffer);
-    printf("Datos : %s", buffer);
+    char buffer[100];
+    printf("Igrese por favor sus datos\n");
+    scanf("%s", buffer);
+    //printf("Datos : %s", buffer);
+    printf("Buffer: %p\n",buffer);
+    printf(buffer);
     return 0;
 }
 
